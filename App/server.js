@@ -1,3 +1,4 @@
+const { AllRoutes } = require('./Router/Router');
 
 
 module.exports = class Application { 
@@ -6,9 +7,9 @@ module.exports = class Application {
 
     constructor(PORT, DB_URL){
         this.configDatabase(DB_URL)
-        this.createServer(PORT)
         this.configApplication()
         this.createRoutes()
+        this.createServer(PORT)
         this.errorHandler()
     }
     configApplication(){
@@ -51,10 +52,6 @@ module.exports = class Application {
         })
     }
     createRoutes(){
-        this.#app.get('/' , (req,res,next) => {
-            return res.status(200).json({
-                message : "App Started"
-            })
-        })
+        this.#app.use(AllRoutes)
     }
 }
