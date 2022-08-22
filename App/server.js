@@ -25,7 +25,7 @@ module.exports = class Application {
         })
     }
     configDatabase(DB_URL){
-     mongoose = require('mongoose')
+     const mongoose = require('mongoose')
 
         mongoose.connect(DB_URL , error =>{
             if(error) throw {error}
@@ -39,7 +39,7 @@ module.exports = class Application {
                 success : false,
                 status : 404
             })
-        })
+        }) 
         this.#app.use((error , req,res,next) => {
             const status = error?.status || 500;
             const message = error.message || "InternalServerError";
