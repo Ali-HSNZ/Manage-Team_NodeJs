@@ -1,0 +1,11 @@
+###register request
+Post http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+    "username" : "alihasdsanzasdeh",
+    "email" : "aliatrabdy@gvmail.com",
+    "mobile" : "09312120508",
+    "password" : "1234567",
+    "confirmPassword" : "1234567" 
+}
