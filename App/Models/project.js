@@ -8,5 +8,5 @@ const ProjectSchema = new mongoose.Schema({
     private : {type : boolean , default : true},
 },{timestamps : true})
 
-const ProjectModel = mongoose.model('team',ProjectSchema);
+const ProjectModel = mongoose.model('project',ProjectSchema);
 module.exports = {ProjectModel}
