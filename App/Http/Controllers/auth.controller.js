@@ -1,5 +1,9 @@
 const { UserModel } = require("../../Models/user");
 const hashString = require("../../Modules/hashString")
+const bcrypt = require('bcrypt');
+const { tokenGenerator } = require("../../Modules/tokenGenerator");
+// const verifyToken = require("../../Modules/verifyToken");
+
 
 class AuthController{
     async register(req , res , next){
@@ -11,8 +15,6 @@ class AuthController{
                 password : hashString(password),
                 email,
                 mobile
-            }).catch(error => {
-                if(error.code===11000) throw {status : 400 , message : "نام کاربری قبلا در سیستم ثبت شده است"}
             })
             res.status(201).json(user)
        } catch (error) {
@@ -20,8 +22,30 @@ class AuthController{
        } 
     }   
 
-    login(){
+    async login(req,res,next){
+        try {
+            const {username , password} = req.body
+            const user = await UserModel.findOne({username})
+            
+            //! Error Handler
+            if(!user) throw {status : 401 , message : "نام کاربری  اشتباه است" , success : false}
+            const verifyPassword = bcrypt.compareSync(password , user.password)
+            if(!verifyPassword) throw {status : 401 , message : "رمز عبور اشتباه است" , success : false}
 
+            //*  Ok And Send Success Response
+            const token = tokenGenerator(user.username)
+            user.token = token;
+            user.save()
+            return res.status(200).json({
+                status : 200,
+                message : "با موفقیت وارد حساب کاربری خود شده اید",
+                success : true,
+                token
+            })
+
+        } catch (error) {
+            next(error)
+        }
     }
 
     resetPassword(){
