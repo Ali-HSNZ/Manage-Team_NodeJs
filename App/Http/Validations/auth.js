@@ -34,6 +34,16 @@ function register(){
 
     ]
 }
+function login() {
+    return[
+        body('username').notEmpty().custom(async username => {
+            const checkUserNameRegex = /^[a-z]+[a-z0-9\_\.]{2,}/gi
+           if(!checkUserNameRegex.test(username)) throw " نام کاربری  باید حداقل 2 نویسه باشد"
+        }),
+        body('password').notEmpty().withMessage("رمز ورود نمی تواند خالی باشد")
+    ]
+}
 module.exports = {
-    registerValidator : register
+    registerValidator : register,
+    loginValidation : login
 }
