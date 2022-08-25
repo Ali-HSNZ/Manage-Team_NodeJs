@@ -9,3 +9,25 @@ Content-Type: application/json
     "password" : "1234567",
     "confirmPassword" : "1234567" 
 }
+
+###Login request
+Post http://localhost:5000/auth/logins
+Content-Type: application/json
+
+{
+    "username" : "alihasdsanzasdeh",
+    "password" : "1234567"
+}
+
+
+
+
+###Login request
+Post http://localhost:5000/user/profile
+Content-Type: application/json
+token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaWhhc2RzYW56YXNkZWgiLCJpYXQiOjE2NjE0MTI4MTQsImV4cCI6MTY2MTQ5OTIxNH0.LuE12D8rLcRHDeLL9mq25_ql_uXJmB8BRoAmaJCUxl4
+
+{
+    "first_name" : "alihasdsanzasdeh",
+    "last_name" : "Alizadeh"
+}
