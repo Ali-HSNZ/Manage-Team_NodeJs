@@ -9,7 +9,8 @@ const UserSchema = new mongoose.Schema({
     password : {type : String , requierd : true},
     skills : {type : [String] , default : []},
     teams : {type : [mongoose.Types.ObjectId] , default : []},
-    token : {type : String , default : ""}
+    token : {type : String , default : ""},
+    image : {type : String}
 },{timestamps : true})
 
 const UserModel = mongoose.model('user',UserSchema);
