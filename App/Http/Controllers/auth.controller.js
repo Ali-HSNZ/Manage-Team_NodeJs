@@ -16,7 +16,17 @@ class AuthController{
                 email,
                 mobile
             })
-            res.status(201).json(user)
+            res.status(201).json({
+                status : 200,
+                success : true,
+                resualt : {username : user.username ,
+                                email : user.email ,
+                                skills : user.skills , 
+                                teams : user.teams ,
+                                mobile : user.mobile , 
+                                roles: user.roles 
+                }
+            })
        } catch (error) {
         next(error)
        } 
