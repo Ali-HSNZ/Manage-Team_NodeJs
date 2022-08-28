@@ -4,10 +4,10 @@ const jwt = require('jsonwebtoken')
 function verifyToken(token){
     try {
         const resualt = jwt.verify(token, "Ali")
-        if(!resualt.username) throw {message : "احراز هویت انجام نشد. لطفا مجدد وارد حساب کاربری خود شوید"}
+        if(!resualt.username) throw {status : 400 , success : false , message : "لطفا مجدد وارد حساب کاربری خود شوید"}
         return resualt
     } catch (error) {
-        throw {message : "احراز هویت انجام نشد. لطفا مجدد وارد حساب کاربری خود شوید"}
+        throw {status : 400 , success : false , message : "لطفا مجدد وارد حساب کاربری خود شوید"}
     }
 }
 
